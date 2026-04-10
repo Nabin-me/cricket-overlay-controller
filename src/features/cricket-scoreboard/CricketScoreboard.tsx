@@ -52,7 +52,7 @@ function AnimatedNumber({
   );
 }
 
-function Frame11({ runs, balls }: { runs: number; balls: number }) {
+function Frame11({ runs, balls, overs }: { runs: number; balls: number; overs: number }) {
   return (
     <div className="content-stretch flex gap-[33px] items-center relative shrink-0">
       <div className="bg-clip-text bg-gradient-to-b font-['Alumni_Sans',sans-serif] font-bold   relative shrink-0 text-white">
@@ -64,7 +64,7 @@ function Frame11({ runs, balls }: { runs: number; balls: number }) {
         transition={{ delay: 0.85, duration: 0.6 }}
         className="bg-clip-text bg-gradient-to-b font-['Alumni_Sans',sans-serif] font-normal  relative shrink-0 text-white"
       >
-        0.5
+        {overs}.{balls}
       </motion.p>
     </div>
   );
@@ -91,7 +91,7 @@ function Frame12({
       >
         {bowlerName.toUpperCase()}
       </motion.p>
-      <Frame11 runs={runs} balls={balls} />
+      <Frame11 runs={runs} balls={balls} overs={overs} />
     </div>
   );
 }
