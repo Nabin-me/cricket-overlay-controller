@@ -18,6 +18,11 @@ const io = new Server(server, {
 // Serve static files from dist directory (production build)
 app.use(express.static(path.join(__dirname, 'dist')));
 
+// SPA fallback - return index.html for all routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
+
 // Default match state
 const defaultMatchState = {
   matchType: 'T20',
