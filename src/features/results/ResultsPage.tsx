@@ -1,4 +1,5 @@
 import { useMatchState } from '../cricket-controller/useMatchState';
+import { BrandFooter } from '../components/BrandFooter';
 
 export default function ResultsPage() {
   const { state } = useMatchState();
@@ -321,6 +322,9 @@ export default function ResultsPage() {
           </div>
         )}
       </div>
+
+      {/* Brand Footer */}
+      <BrandFooter />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { MatchSetupTab } from './components/MatchSetupTab';
 import { MatchControlTab } from './components/MatchControlTab';
 import { StatsDisplayTab } from './components/StatsDisplayTab';
 import { useMatchState } from './useMatchState';
+import { BrandFooter } from '../../components/BrandFooter';
 
 type TabType = 'setup' | 'match' | 'stats';
 
@@ -63,12 +64,15 @@ export default function CricketController() {
       </div>
 
       {/* Connection Status Footer */}
-      <div className="fixed bottom-4 right-4 items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono bg-white/5 backdrop-blur-sm border border-white/10">
+      <div className="fixed bottom-4 right-4 flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-mono bg-white/5 backdrop-blur-sm border border-white/10">
         <div className={`w-2 h-2 rounded-full ${connected ? 'bg-green-400' : 'bg-red-400'}`} />
         <span className={connected ? 'text-green-400' : 'text-red-400'}>
           {connected ? 'CONNECTED' : 'DISCONNECTED'}
         </span>
       </div>
+
+      {/* Brand Footer */}
+      <BrandFooter />
     </div>
   );
 }
