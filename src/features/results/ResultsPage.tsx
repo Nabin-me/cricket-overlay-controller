@@ -1,5 +1,5 @@
 import { useMatchState } from '../cricket-controller/useMatchState';
-import { BrandFooter } from '../components/BrandFooter';
+import { BrandFooter } from '../../components/BrandFooter';
 
 export default function ResultsPage() {
   const { state } = useMatchState();
