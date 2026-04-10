@@ -1,118 +1,136 @@
-# Cricket Scoring System
+# Cricket Overlay Controller
 
-A real-time cricket scoring system with Socket.io backend, React controller UI, and OBS overlay.
+A professional real-time cricket overlay controller built for live sports broadcasting. Control your cricket overlay from any device with instant synchronization.
 
-## Features
+**Developed by:** Nabin
+**Powered by:** [Esabai Digital Services](https://esabai.com)
 
-- **Live Cricket Scoring** - Real-time score updates with Socket.io
-- **OBS Overlay** - Beautiful cricket scoreboard for streaming
-- **Controller Panel** - Desktop and mobile-friendly scoring interface
-- **Event Animations** - FOUR!, SIX!, OUT! animations with particle effects
-- **Team Logo Upload** - Support for custom team logos
-- **Match Statistics** - CRR, RRR, partnerships, extras, fall of wickets
-- **Ball-by-Ball Tracking** - Complete over history with visual pips
+## ✨ Features
 
-## Quick Start
+- **Real-time Control:** Manage live cricket matches from any device
+- **Cross-device Sync:** Use your phone, tablet, or laptop as a controller
+- **Professional Overlay:** Broadcast-quality graphics with smooth animations
+- **Toss Integration:** Automatic team positioning based on toss result
+- **Complete Match Management:** Setup, control, and statistics in one place
+- **Sponsor Support:** Customizable scrolling sponsor text marquee
+- **Results Display:** Dedicated results page for OBS integration
 
-### Development Mode
+## 🎯 Use Cases
 
-Run both the React dev server and Socket.io backend:
+- Live cricket match broadcasting
+- Tournament live streaming
+- Sports event production
+- Cricket coaching analysis
+
+## 🚀 Quick Start
+
+### Local Development
 
 ```bash
+# Install dependencies
+npm install
+
+# Start both Vite dev server and Socket.io server
 npm run dev:all
+
+# Or start individually:
+npm run dev      # Frontend only
+npm run server   # Backend only
 ```
 
-This starts:
-- React dev server on `http://localhost:5173`
-- Socket.io server on `http://localhost:3000`
+Access the application:
+- **Controller:** http://localhost:5173
+- **Overlay:** http://localhost:5173/overlay
+- **Results:** http://localhost:5173/results
 
-### Production Mode
+## 📱 How It Works
 
-1. Build the React app:
-```bash
-npm run build
-```
+### 1. Match Setup
+- Enter team names and upload logos
+- Add player rosters (minimum 11 per team)
+- Conduct toss (winner & decision)
+- Configure match settings (T20 format)
 
-2. Start the server:
-```bash
-npm run server
-```
+### 2. Match Control
+- Live ball-by-ball scoring
+- Batsmen selection from roster
+- Bowler management from fielding team
+- Partnership tracking
+- Real-time updates across all devices
 
-3. Access the application at `http://localhost:3000`
-
-## Routes
-
-- **`/`** or **`/controller`** - Scoring control panel
-- **`/overlay`** - OBS browser source (transparent background, no scrollbars)
-
-## OBS Setup
-
-1. Build and start the production server
-2. In OBS Studio, add a **Browser Source**
-3. Set URL to: `http://your-server-ip:3000/overlay`
-4. Set width to `1920` and height to `1080`
-5. Check "Control audio via OBS" (optional)
-6. Click OK
-
-The overlay has a transparent background and will display over your video feed.
-
-## Controller Features
-
-### Column 1: Match Setup
-- Set team names and logos
-- Choose match format (T20, ODI, T10, Test)
-- Toggle between innings
-- Set target score (2nd innings)
-- Match status (Live, Drinks Break, Innings Break, etc.)
-- Reset match (with confirmation)
-
-### Column 2: Players
-- View and set batsmen names
-- Tap batsman to set strike
-- Add new batsman (replaces non-striker)
-- Set bowler name
-- Swap ends, reset partnership
-
-### Column 3: Ball Entry
-- **Staged Delivery**: Tap a ball button, then COMMIT
-- **Runs**: Dot (•), 1, 2, 3, 4, 6
-- **Wickets**: Out, Run Out
-- **Extras**: Wide, No Ball, Bye, Leg Bye
-- **Quick Actions**: Instant commit without staging
-- **Undo Last Ball**: Revert to previous state
-
-### Column 4: Stats
-- Live score (runs/wickets)
-- Overs, CRR, RRR (when chasing)
-- Partnership
-- Extras breakdown
+### 3. Statistics
+- Comprehensive batting & bowling stats
+- Partnership breakdown
 - Fall of wickets
-- This over (ball-by-ball pips)
+- Over-by-over analysis
 
-## Mobile Support
+## 🎨 Features Breakdown
 
-On screens smaller than 900px, the controller switches to a bottom-tab layout with 4 tabs:
-- **BALL** - Ball entry controls
-- **PLAYERS** - Batsmen and bowler management
-- **STATS** - Live statistics
-- **MATCH** - Match setup options
+### Match Setup Tab
+- Team configuration with logo upload
+- Player management (11+ per team)
+- Toss simulation with automatic batting team determination
+- Match format selection (T20 only)
 
-## Technologies
+### Match Control Tab
+- Status management (Live, Break, Innings Break, etc.)
+- Ball entry (runs, wickets, extras)
+- Batsmen dropdown from batting team roster
+- Bowler selection from fielding team roster
+- Strike rotation control
+- Innings switching
 
-- **Frontend**: React, TypeScript, Tailwind CSS, Framer Motion
-- **Backend**: Node.js, Express, Socket.io
-- **Build**: Vite
+### Results Page
+- Optimized for 1920x1080 OBS canvas
+- Real-time score display
+- Team logos with automatic positioning
+- Compact statistics layout
+- Transparent background for overlay
 
-## Environment Variables
+## 🛠️ Technology Stack
 
-Create a `.env` file in the project root:
+- **Frontend:** React 18.3.1, TypeScript, Tailwind CSS v4
+- **Real-time:** Socket.io 4.8.3
+- **Animations:** Motion (Framer Motion) 12.23.24
+- **Build:** Vite 6.3.5
+- **Routing:** React Router DOM 6.30.3
 
-```
-VITE_SOCKET_URL=http://localhost:3000
-```
+## 📦 Deployment
 
-For production, this defaults to the same origin as the server.
+### Railway (Recommended)
 
-## License
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/esabai/cricket-overlay-controller)
 
-MIT
+1. Push code to GitHub
+2. Import repository on Railway
+3. Set start command: `npm start`
+4. Deploy!
+
+### Environment Variables
+
+No environment variables required for basic deployment.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+© 2025 Esabai Digital Services. All rights reserved.
+
+## 👨‍💻 Developer
+
+**Developed by:** [Nabin](https://github.com/nabin)
+
+**About Esabai Digital Services:**
+We provide cutting-edge digital solutions for sports broadcasting and live event production.
+
+---
+
+<div align="center">
+
+**Esabai Digital Services**
+
+*Innovating Sports Broadcasting*
+
+</div>
