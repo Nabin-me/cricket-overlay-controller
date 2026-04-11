@@ -52,11 +52,11 @@ function AnimatedNumber({
   );
 }
 
-function Frame11({ runs, balls, overs }: { runs: number; balls: number; overs: number }) {
+function Frame11({ runs, wickets, overs, balls }: { runs: number; wickets: number; overs: number; balls: number }) {
   return (
     <div className="content-stretch flex gap-[33px] items-center relative shrink-0">
       <div className="bg-clip-text bg-gradient-to-b font-['Alumni_Sans',sans-serif] font-bold   relative shrink-0 text-white">
-        <AnimatedNumber value={runs} /> - <AnimatedNumber value={balls} />
+        <AnimatedNumber value={runs} /> - <AnimatedNumber value={wickets} />
       </div>
       <motion.p
         initial={{ opacity: 0 }}
@@ -72,11 +72,13 @@ function Frame11({ runs, balls, overs }: { runs: number; balls: number; overs: n
 
 function Frame12({
   runs,
+  wickets,
   balls,
   overs,
   bowlerName,
 }: {
   runs: number;
+  wickets: number;
   balls: number;
   overs: number;
   bowlerName: string;
@@ -91,7 +93,7 @@ function Frame12({
       >
         {bowlerName.toUpperCase()}
       </motion.p>
-      <Frame11 runs={runs} balls={balls} overs={overs} />
+      <Frame11 runs={runs} wickets={wickets} overs={overs} balls={balls} />
     </div>
   );
 }
@@ -340,6 +342,7 @@ function Group1({
   bowlerRuns,
   bowlerBalls,
   bowlerOvers,
+  bowlerWickets,
   isBinayakBatting,
   thisOver,
   sponsorText,
@@ -751,7 +754,7 @@ function Group1({
           />
         )}
       </div>
-      <Frame12 runs={bowlerRuns} balls={bowlerBalls} overs={bowlerOvers} bowlerName={bowlerName} />
+      <Frame12 runs={bowlerRuns} wickets={bowlerWickets} balls={bowlerBalls} overs={bowlerOvers} bowlerName={bowlerName} />
       <Group
         batsman1Name={batsman1Name}
         batsman1Runs={batsman1Runs}
@@ -823,6 +826,7 @@ export default function Slide() {
     bowlerRuns: state.bowler.runs,
     bowlerBalls: state.bowler.balls,
     bowlerOvers: state.bowler.overs,
+    bowlerWickets: state.bowler.wickets,
     isBinayakBatting: state.onStrike === 2,
     thisOver: state.thisOver || [],
     sponsorText: state.sponsorText || 'THIS IS A SPONSOR TEXT',

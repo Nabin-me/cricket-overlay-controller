@@ -22,7 +22,10 @@
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
       "Bash(git push:*)",
-      "Bash(git remote remove:*)"
+      "Bash(git remote remove:*)",
+      "Bash(node stress-test.js)",
+      "Bash(tasklist)",
+      "Bash(awk '{print $5}')"
     ]
   }
 }

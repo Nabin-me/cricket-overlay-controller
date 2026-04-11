@@ -224,6 +224,7 @@ io.on("connection", (socket) => {
         matchState.score += value;
         striker.runs += value;
         striker.balls += 1;
+        matchState.bowler.balls += 1;
 
         if (value === 4) striker.fours += 1;
         if (value === 6) striker.sixes += 1;
@@ -249,8 +250,7 @@ io.on("connection", (socket) => {
         matchState.extras.wides += 1;
         matchState.extras.total += 1;
         matchState.bowler.runs += 1;
-        matchState.thisOver.push("Wd");
-        // Wide is not a legal delivery - don't increment balls
+        // Wide is not a legal delivery - don't increment balls or add to this over
         break;
 
       case "noball":
@@ -258,14 +258,14 @@ io.on("connection", (socket) => {
         matchState.extras.noBalls += 1;
         matchState.extras.total += 1;
         matchState.bowler.runs += 1;
-        matchState.thisOver.push("Nb");
-        // No ball is not a legal delivery - don't increment balls
+        // No ball is not a legal delivery - don't increment balls or add to this over
         break;
 
       case "bye":
         matchState.score += value;
         matchState.extras.byes += value;
         matchState.extras.total += value;
+        matchState.bowler.balls += 1;
         // Byes don't go to bowler
         matchState.thisOver.push(`${value}b`);
         break;
@@ -274,6 +274,7 @@ io.on("connection", (socket) => {
         matchState.score += value;
         matchState.extras.legByes += value;
         matchState.extras.total += value;
+        matchState.bowler.balls += 1;
         // Leg byes don't go to bowler
         matchState.thisOver.push(`${value}lb`);
         break;
@@ -282,6 +283,8 @@ io.on("connection", (socket) => {
       case "runout":
         matchState.wickets += 1;
         striker.balls += 1;
+        matchState.bowler.balls += 1;
+        matchState.bowler.wickets += (type === "wicket" ? 1 : 0);
         matchState.thisOver.push("W");
 
         // Add to fall of wickets
@@ -322,7 +325,56 @@ io.on("connection", (socket) => {
 
   // Reset match
   socket.on("resetMatch", () => {
-    matchState = { ...defaultMatchState };
+    matchState = {
+      matchType: "T20",
+      team1: "Team A",
+      team2: "Team B",
+      team1Logo: "",
+      team2Logo: "",
+      team1Players: [],
+      team2Players: [],
+      tossWinner: null,
+      tossDecision: null,
+      tossCompleted: false,
+      innings: 1,
+      score: 0,
+      wickets: 0,
+      overs: 0,
+      balls: 0,
+      team1Score: 0,
+      team1Wickets: 0,
+      team1Overs: 0,
+      team1Balls: 0,
+      team2Score: 0,
+      team2Wickets: 0,
+      team2Overs: 0,
+      team2Balls: 0,
+      batsman1: { name: "Batsman 1", runs: 0, balls: 0, fours: 0, sixes: 0 },
+      batsman2: { name: "Batsman 2", runs: 0, balls: 0, fours: 0, sixes: 0 },
+      onStrike: 1,
+      bowler: {
+        name: "Bowler",
+        overs: 0,
+        balls: 0,
+        maidens: 0,
+        runs: 0,
+        wickets: 0,
+      },
+      extras: { total: 0, wides: 0, noBalls: 0, byes: 0, legByes: 0 },
+      thisOver: [],
+      partnership: { runs: 0, balls: 0 },
+      fallOfWickets: [],
+      target: 0,
+      isChasing: false,
+      crr: "0.00",
+      rrr: "0.00",
+      status: "Live",
+      lastEvent: null,
+      showStatsOverlay: false,
+      entryMode: "staged",
+      sponsorText:
+        "THIS IS A SPONSOR TEXT SPONSORED BY: XYZ MEDIA PRODUCTION, PRODUCTION: ESABAI DIGITAL SERVICES, EVENT PARTNER: ABC MEDIA, INTERNET..",
+    };
     lastSnapshot = null;
     broadcastState();
   });
